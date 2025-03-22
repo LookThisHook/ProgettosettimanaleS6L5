@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProgettosettimanaleS6L5.Models.Prenotazione>
+
+<h2>Le tue Prenotazioni</h2>
+
+@if (Model.Count() == 0)
+{
+    <p>Non hai ancora prenotazioni.</p>
+    <div>
+        <a href="@Url.Action("Create", "Prenotazioni")" class="btn btn-success mb-3">Crea una Prenotazione</a>
+    </div>
+}
+else
+{
+    <div>
+        <a href="@Url.Action("Create", "Prenotazioni")" class="btn btn-success mb-3">Crea una Prenotazione</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Camera</th>
+                <th>Data Inizio</th>
+                <th>Data Fine</th>
+                <th>Stato</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prenotazione in Model)
+            {
+                <tr>
+                    <td>@prenotazione.Cliente.Nome @prenotazione.Cliente.Cognome</td>
+                    <td>@prenotazione.Camera.Numero</td>
+                    <td>@prenotazione.DataInizio.ToShortDateString()</td>
+                    <td>@prenotazione.DataFine.ToShortDateString()</td>
+                    <td>@prenotazione.Stato</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Prenotazioni", new { id = prenotazione.PrenotazioneId })">Dettagli</a> |
+                        <a href="@Url.Action("Edit", "Prenotazioni", new { id = prenotazione.PrenotazioneId })">Modifica</a> |
+                        <a href="@Url.Action("Delete", "Prenotazioni", new { id = prenotazione.PrenotazioneId })">Elimina</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

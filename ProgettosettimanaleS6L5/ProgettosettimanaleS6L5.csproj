@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Microsoft\AspNetCore\Identity\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

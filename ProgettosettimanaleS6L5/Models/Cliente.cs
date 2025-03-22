@@ -18,5 +18,7 @@ namespace ProgettosettimanaleS6L5.Models
 
         [Required, Phone]
         public string Telefono { get; set; }
+
+        public List<Prenotazione> Prenotazioni { get; set; }
     }
 }

@@ -1,0 +1,53 @@
+﻿@model ProgettosettimanaleS6L5.Models.Prenotazione
+
+@{
+    ViewData["Title"] = "Crea Prenotazione";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Prenotazione</h4>
+<hr />
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="ClienteId" class="control-label"></label>
+        <select asp-for="ClienteId" class="form-control" asp-items="@(ViewData["Clienti"] as SelectList)"></select>
+        <span asp-validation-for="ClienteId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CameraId" class="control-label"></label>
+        <select asp-for="CameraId" class="form-control" asp-items="@(ViewData["CameraId"] as SelectList)"></select>
+        <span asp-validation-for="CameraId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataInizio" class="control-label"></label>
+        <input asp-for="DataInizio" class="form-control" type="date" />
+        <span asp-validation-for="DataInizio" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataFine" class="control-label"></label>
+        <input asp-for="DataFine" class="form-control" type="date" />
+        <span asp-validation-for="DataFine" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Stato" class="control-label"></label>
+        <input asp-for="Stato" class="form-control" />
+        <span asp-validation-for="Stato" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Crea</button>
+        <a asp-action="Index" class="btn btn-secondary">Annulla</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

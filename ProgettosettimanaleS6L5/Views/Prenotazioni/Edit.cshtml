@@ -1,0 +1,80 @@
+﻿@model ProgettosettimanaleS6L5.Models.Prenotazione
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Prenotazione</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="editPrenotazioneForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PrenotazioneId" />
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label"></label>
+                <select asp-for="ClienteId" class="form-control" asp-items="ViewBag.ClienteId"></select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraId" class="control-label"></label>
+                <select asp-for="CameraId" class="form-control" asp-items="ViewBag.CameraId"></select>
+                <span asp-validation-for="CameraId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInizio" class="control-label"></label>
+                <input asp-for="DataInizio" class="form-control" />
+                <span asp-validation-for="DataInizio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataFine" class="control-label"></label>
+                <input asp-for="DataFine" class="form-control" />
+                <span asp-validation-for="DataFine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stato" class="control-label"></label>
+                <input asp-for="Stato" class="form-control" />
+                <span asp-validation-for="Stato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $('#editPrenotazioneForm').on('submit', function (e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: '@Url.Action("Edit", "Prenotazioni")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message);
+                            window.location.href = '@Url.Action("Index", "Prenotazioni")';
+                        } else {
+                            alert('Si è verificato un errore.');
+                        }
+                    },
+                    error: function () {
+                        alert('Si è verificato un errore nella comunicazione con il server.');
+                    }
+                });
+            });
+        });
+    </script>
+}

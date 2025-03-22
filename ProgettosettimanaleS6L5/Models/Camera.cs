@@ -15,5 +15,6 @@ namespace ProgettosettimanaleS6L5.Models
 
         [Required]
         public decimal Prezzo { get; set; }
+        public List<Prenotazione> Prenotazioni { get; set; }
     }
 }
